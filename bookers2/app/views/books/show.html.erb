@@ -4,7 +4,8 @@
 
 <h2>Book detail</h2>
 <table class="table">
-  <tbody>
+    <tbody>
+  
     <tr>
       <td>
         <%= attachment_image_tag @book.user, :profile_image, fallback: "no_image.jpg" , size: "40x40"%>
@@ -21,7 +22,31 @@
         <%= @book.body %>
       </td>
 
-       <td id='favorite-button_#{ book.id }'>
-        <%= render  'books/favorite-button', book: @book %>
+      <td id=<%= "favorite-button_#{ @book.id }" %>>
+        <%= render 'books/favorite-button', book: @book %>
       </td>
-        <%= render  'books/book_comment', book: @book %>
+      <td>
+        コメント数：<%= @book.book_comments.count %>
+      </td>
+
+      <td>
+        <% if @book.user == current_user %>
+        <%= link_to "Edit", edit_book_path(@book), class: 'btn btn-sm btn-success' %>
+      </td>
+      <td>
+        <%= link_to "Destroy", book_path(@book), class: 'btn btn-sm btn-danger', method: :delete, "data-confirm" => "本当に消しますか？" %>
+        <% end %>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    <table class="table">
+      <tbody id="textarea">
+        <%= render partial: 'book_comments/index', locals: {  comments: @comments , book: @book} %>
+        
+      </tbody>
+    </table>
+  <div>
+    <%= render partial: 'book_comments/form', locals: { book_comment: @book_comment, book: @book} %>
+  </div>
+    

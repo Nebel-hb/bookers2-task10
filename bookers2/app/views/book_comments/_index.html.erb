@@ -1,7 +1,6 @@
-       
-
-    <% book.book_comments.each do |book_comment| %>
-    <tr>
+<% comments.each do |book_comment| %>
+     
+     <tr>
       <td>
         <%= attachment_image_tag book_comment.user, :profile_image, fallback: "no_image.jpg" , size: "40x40"%>
         <%= link_to user_path(book_comment.user.id) do %>
@@ -18,7 +17,4 @@
       </td>
     </tr>
     <% end %>
-  </tbody>
-</table>
-
-     
+ 

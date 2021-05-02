@@ -29,7 +29,8 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_new = Book.new
     @book_comment = BookComment.new
-    @comments = BookComment.all
+    @comments = @book.book_comments
+    # @comments = @book.comments.oder(created_at: :desk)
     @user = User.find(params[:id])
   end
   def edit
@@ -73,5 +74,3 @@ private
   end
 
 end
-
-
