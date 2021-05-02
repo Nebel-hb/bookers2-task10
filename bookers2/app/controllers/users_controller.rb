@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+
   end
 
   def edit
@@ -39,6 +40,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def followings
+    @user = User.find(params[:id])
+
+  end
+
+  def followers
+    @user = User.find(params[:id])
+
+  end
+
  private
 
   def book_params
@@ -47,5 +58,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
+  def relationship_params
+    params.require(:relationship).permit(:followers, :followings)
+  end
+
 
 end

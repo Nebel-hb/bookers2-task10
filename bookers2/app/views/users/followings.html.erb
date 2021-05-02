@@ -1,9 +1,9 @@
 
-<%= render 'books/sideber', user: current_user, book: @book %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-
-    <div class="col-md-8 offset-md-1">
-      <h2>Users</h2>
+      <h2>followed Users</h2>
         <table class="table">
           <thead>
             <tr>
@@ -12,7 +12,7 @@
               <th colspan="3"></th>
             </tr>
           </thead>
-          <tbody><% @users.each do |user| %>
+          <tbody><% @user.following_user.where.not(id: current_user.id).each do |user| %>
             <tr>
               <td>
                 <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %>
@@ -27,26 +27,12 @@
                 <%= " フォロワー数:#{user.followed.count}" %>
               </td>
               <td>
-                <% unless current_user == user %>
-                  <% if current_user.following?(user) %>
-                    <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-                  <% else %>
-                    <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td>
                 <%= link_to user_path(user.id) do %>Show<% end %>
               </td>
             </tr>
-            <% end %>
-           </div>
+          <% end %>
           </tbody>
         </table>
     </div>
   </div>
-
-
-
-
-
+</div>
