@@ -10,8 +10,8 @@ class User < ApplicationRecord
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
-  has_many :following_user, through: :follower, source: :followed 
-  has_many :follower_user, through: :followed, source: :follower 
+  has_many :following_user, through: :follower, source: :followed
+  has_many :follower_user, through: :followed, source: :follower
 
   attachment :profile_image
 
@@ -25,22 +25,22 @@ class User < ApplicationRecord
   def unfollow(user_id)
     follower.find_by(followed_id: user_id).destroy
   end
-  
+
   def following?(user)
     following_user.include?(user)
   end
 
-  def self.search(search,word)
-　　if search == "forward_match"
-    　@user = User.where("name LIKE?","#{word}%")
-　　elsif search == "backward_match"
-    　@user = User.where("name LIKE?","%#{word}")
-　　elsif search == "perfect_match"
-    　@user = User.where("name:#{word}")
-　　elsif search == "partial_match"
-    　@user = User.where("name LIKE?","%#{word}%")
-　　else
-    　@user = User.all
-    　
+  def self.search(search, word)
+    if search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      @user = User.where(name: "#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
   end
 end

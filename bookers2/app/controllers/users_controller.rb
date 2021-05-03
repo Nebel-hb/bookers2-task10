@@ -7,17 +7,15 @@ class UsersController < ApplicationController
 #   end
 # end
   def show
-
-  @user = User.find(params[:id])
-  @books = Book.all
-  @user_books = @user.books
-  @book = Book.new
+    @user = User.find(params[:id])
+    @books = Book.all
+    @user_books = @user.books
+    @book = Book.new
   end
 
   def index
     @users = User.all
     @book = Book.new
-
   end
 
   def edit
@@ -39,19 +37,16 @@ class UsersController < ApplicationController
     render :edit
     end
   end
-
+  
   def followings
     @user = User.find(params[:id])
-
   end
-
+  
   def followers
     @user = User.find(params[:id])
-
   end
 
  private
-
   def book_params
     params.require(:book).permit(:title, :body)
   end
@@ -61,6 +56,4 @@ class UsersController < ApplicationController
   def relationship_params
     params.require(:relationship).permit(:followers, :followings)
   end
-
-
 end

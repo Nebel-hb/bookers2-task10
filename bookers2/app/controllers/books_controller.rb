@@ -30,8 +30,7 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @book_comment = BookComment.new
     @comments = @book.book_comments
-    # @comments = @book.comments.oder(created_at: :desk)
-    @user = User.find(params[:id])
+    
   end
   def edit
      @user = User.find(params[:id])
@@ -39,9 +38,9 @@ class BooksController < ApplicationController
      @books = Book.all
      @book_new = Book.new
     if @book.user == current_user
-            render "edit"
+      render "edit"
     else
-            redirect_to books_path
+      redirect_to books_path
     end
   end
 

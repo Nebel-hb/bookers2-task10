@@ -1,16 +1,16 @@
 <div class="container">
   <div class="col-xs-12">
-    <% if @model == "user" %>
-    <h2>Users search for '<%= @value %>'</h2>
+    <% if @range == "User" %>
+    <h2>Users search for '<%= @range %>'</h2>
     <table class="table">
         <thead>
             <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Introduction</th>
+            <th></th>
+            <th>Name</th>
+            <th>Introduction</th>
             </tr>
         </thead>
-    <% @datas.each do |user| %>
+        <% @user.each do |user| %>
         <tbody>
             <tr>
                 <th>
@@ -25,8 +25,8 @@
             </tr>
         </tbody>
     <% end %>
-    <% elsif @model == "book" %>
-    <h2>Books search for '<%= @value %>'</h2>
+    <% else %>
+    <h2>Books search for '<%= @range %>'</h2>
     <table class="table">
         <thead>
             <tr>
@@ -35,11 +35,11 @@
                 <th>Opinion</th>
             </tr>
         </thead>
-        <% @datas.each do |book| %>
+        <% @book.each do |book| %>
         <tbody>
             <tr>
                 <th>
-                    <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg" , size: "40x40"%>
+                    <%= attachment_image_tag book.user, :profile_image, fallback: "no_image.jpg" , size: "40x40"%>
                 </th>
                 <th>
                     <%= book.title %>
