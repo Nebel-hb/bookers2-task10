@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
   get 'users/show'
   devise_for :users
   root to: 'homes#top'
   get '/home/about' => 'homes#new' , as: 'home'
+  get '/search' => 'searche#search'
 
   resources :books, only: [:new, :create, :edit, :index, :show, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
@@ -13,8 +15,8 @@ Rails.application.routes.draw do
     get :followings, on: :member
     get :followers, on: :member
   end
-  post 'follow/:id' => 'relationships#follow', as: 'follow' 
-  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' 
+  post 'follow/:id' => 'relationships#follow', as: 'follow'
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   resources :relationships, only: [:create, :destroy]
 
 end
