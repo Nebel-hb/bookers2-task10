@@ -2,7 +2,6 @@ class BooksController < ApplicationController
 
   def new
    @book = Book.new
-
   end
 
   def create
@@ -16,7 +15,6 @@ class BooksController < ApplicationController
       flash.now[:alert] = 'You have created book error.'
       render :index
     end
-
   end
 
   def index
@@ -30,8 +28,8 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @book_comment = BookComment.new
     @comments = @book.book_comments
-    
   end
+
   def edit
      @user = User.find(params[:id])
      @book = Book.find(params[:id])
@@ -55,12 +53,10 @@ class BooksController < ApplicationController
     end
   end
 
-
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
-
   end
 
 private

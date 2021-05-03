@@ -16,7 +16,6 @@ class BookCommentsController < ApplicationController
     @comment.destroy
     @comments = @book.book_comments
     render :index
-
   end
 
   private

@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
 
-# before_action :ensure_current_user, {only: [:edit, :update]}
-# def ensure_current_user
-#   if @current_user.id != params[:id].to_i
-#     redirect_to("/users")
-#   end
-# end
   def show
     @user = User.find(params[:id])
     @books = Book.all
@@ -37,11 +31,11 @@ class UsersController < ApplicationController
     render :edit
     end
   end
-  
+
   def followings
     @user = User.find(params[:id])
   end
-  
+
   def followers
     @user = User.find(params[:id])
   end
