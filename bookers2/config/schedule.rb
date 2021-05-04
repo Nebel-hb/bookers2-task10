@@ -21,8 +21,8 @@ set :environment, :development
 #   runner "AnotherModel.prune_old_records"
 # end
 
-# every 1.days, at: '6:00 pm' do
-every 10.minutes do
+every 1.days, at: '6:00 pm' do
+# every 10.minutes do
 
   runner "DailyMailer.daily_notification"
 end
