@@ -6,8 +6,8 @@ class DailyMailer < ApplicationMailer
   #   en.daily_mailer.daily_notification.subject
   #
   def daily_notification
-    @greeting = "Hi"
-     default to: -> { User.pluck(:email) }
-    mail(subject: "Daily Report of Your Record")
+    @user = User.pluck(:email)
+    mail to: @user, subject: "Daily Report of Your Record"
+
   end
 end
