@@ -2,8 +2,7 @@
     <div class="row-12">
         <div class="col-xs-12">
             <h2 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h2>
-
-            <table class="message table">
+            <table class=" table">
               <thead>
                 <tr>
                   <th style="text-align: left; font-size: 20px;"><%= current_user.name %></th>
@@ -17,7 +16,6 @@
                     <th>
                       <p style="text-align: left;"><%= chat.message %></p>
                     </th>
-                    <th></th>
                   </tr>
                 </tbody>
                 <% else %>
@@ -36,6 +34,7 @@
             <%= form_with model: @chat do |f| %>
               <%= f.text_field :message %>
               <%= f.hidden_field :room_id %>
+              <%= f.submit %>
             <% end %>
         </div>
     </div>
