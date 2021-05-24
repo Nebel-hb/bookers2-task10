@@ -20,8 +20,8 @@ set :output, 'log/cron.log'
 #   rake "some:great:rake:task"
 # end
 #
-every 1.minute do
-# every 1.days, at: '6:00 pm' do
+# every 1.minute do
+every 1.days, at: '6:00 pm' do
 
   runner "Batch::SendEmail.send"
 end
